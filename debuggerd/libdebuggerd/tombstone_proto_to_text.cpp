@@ -594,6 +594,7 @@ static void print_guest_thread(CallbackType callback, const Tombstone& tombstone
 
 bool tombstone_proto_to_text(const Tombstone& tombstone, CallbackType callback) {
   CBL("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***");
+  CBL("LMODroid Version: '%s'", tombstone.lmodroid_version().c_str());
   CBL("Build fingerprint: '%s'", tombstone.build_fingerprint().c_str());
   CBL("Revision: '%s'", tombstone.revision().c_str());
   CBL("ABI: '%s'", abi_string(tombstone.arch()));
