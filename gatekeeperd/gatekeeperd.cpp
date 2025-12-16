@@ -157,8 +157,8 @@ Status GateKeeperProxy::adjust_userId(uint32_t userId, uint32_t* hw_userId) {
     if ((aidl_hw_device == nullptr) && (hw_device == nullptr)) {
         return Status::fromExceptionCode(Status::EX_ILLEGAL_STATE);
     }
-
-    if (is_running_gsi) {
+    bool is_repair_mode = android::base::GetProperty(android::gsi::kDsuSlotProp, "") == "repairmode.lock";
+    if (is_running_gsi && !is_repair_mode) {
         *hw_userId = userId + kGsiOffset;
         return Status::ok();
     }
